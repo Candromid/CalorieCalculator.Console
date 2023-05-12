@@ -55,7 +55,7 @@ namespace Colories_calculation
             double totalCalories = totalProteins * 4.0 + totalFats * 9.0 + totalCarbohydrates * 4.0;
 
             // Возвращаем количество калорий в продукте
-            return totalCalories;
+            return Math.Round(totalCalories);
         }
 
 
