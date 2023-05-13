@@ -8,10 +8,27 @@ namespace Colories_calculation
 {
     public class Menu
     {
+        public enum Spisok
+        {
+            Масло = 1,
+            Огурец ,
+            Помидор ,
+            Сыр ,
+            Курица,
+            Картофель,
+            Лук,
+            Морковь,
+            Говядина,
+            Рыба
+        };
+
         public List<Product> Products = new List<Product>();
 
-        public Menu()
+        public Spisok spisok;
+
+        public Menu ()
         {
+            
             Products.Add(new Product("Масло", 0.5, 82.5, 0.8, new Dictionary<string, double> { { "A", 684 }, { "E", 2.8 } }));          //0
             Products.Add(new Product("Огурец", 0.8, 0.1, 2.8, new Dictionary<string, double> { { "C", 14 } }));                         //1
             Products.Add(new Product("Помидор", 1.10, 0.2, 3.7, new Dictionary<string, double> { { "C", 13 } }));                       //2
