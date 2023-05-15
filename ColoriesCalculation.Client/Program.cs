@@ -1,4 +1,4 @@
-﻿namespace Colories_calculation
+﻿namespace ColoriesCalculation.Client
 {
     internal class Program
     {
