@@ -1,4 +1,6 @@
-﻿namespace ColoriesCalculation.Client
+﻿using ColoriesCalculation.Entities.Core;
+
+namespace ColoriesCalculation.Client
 {
     internal class Program
     {

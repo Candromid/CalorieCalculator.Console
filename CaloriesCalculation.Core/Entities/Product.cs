@@ -1,4 +1,4 @@
-﻿namespace ColoriesCalculation.Client
+﻿namespace ColoriesCalculation.Entities.Core
 {
     // Определяем класс "Продукт"
     public class Product

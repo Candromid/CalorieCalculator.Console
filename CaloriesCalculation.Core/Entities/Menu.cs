@@ -1,4 +1,4 @@
-﻿namespace ColoriesCalculation.Client
+﻿namespace ColoriesCalculation.Entities.Core
 {
     public class Menu
     {

@@ -1,4 +1,4 @@
-﻿namespace ColoriesCalculation.Client
+﻿namespace ColoriesCalculation.Entities.Core
 {
     // Определяем класс "Блюдо"
     public class Dish
