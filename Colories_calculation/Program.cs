@@ -17,12 +17,11 @@
             Product cucumber = menu.Products[(int)Menu.Spisok.Огурец];
             Product tomatos = menu.Products[(int)Menu.Spisok.Помидор];
 
-
-            //Добавить в результатах округление до 2 чисел после запятой 
-
+            Console.WriteLine(menu.Products[(int)Menu.Spisok.Масло].Name);
+            
             Dish salat = new Dish("Салат", new Dictionary<Product, double> { { oil, 30 }, { tomatos, 300 }, { cucumber, 200 } });
 
-            Product cheese = menu.Products.Single(x => x.Name == "Сыр");
+            Product cheese = menu.Products[(int)Menu.Spisok.Сыр];
 
             salat.AddProduct(cheese, 200);
 

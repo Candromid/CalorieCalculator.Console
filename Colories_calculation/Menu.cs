@@ -10,7 +10,7 @@ namespace Colories_calculation
     {
         public enum Spisok
         {
-            Масло = 1,
+            Масло ,
             Огурец,
             Помидор,
             Сыр,

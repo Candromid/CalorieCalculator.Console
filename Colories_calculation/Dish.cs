@@ -58,7 +58,7 @@ namespace Colories_calculation
             }
 
             // Возвращаем общую калорийность блюда
-            return totalCalories;
+            return Math.Round(totalCalories, 2);
         }
 
         public void GetTotalVitamins()
