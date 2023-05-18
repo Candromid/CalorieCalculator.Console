@@ -69,7 +69,7 @@ namespace CaloriesCalculation.Admin
 
                 foreach (var vitamin in product.Vitamins)
                 {
-                    line += vitamin.Value + " ";
+                    line += vitamin.Key + " " + vitamin.Value + " ";
                 }
 
                 listForLines.Add(line);
