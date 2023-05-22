@@ -10,12 +10,12 @@ namespace CaloriesCalculation.Admin
             string filePath = GetFilePath();
 
             var listWithProductData = GetListWithProductData();
-          
+
             List<string> listForLines = new();
 
             foreach (var product in listWithProductData)
             {
-                string line = product.Name + " " + product.Proteins + " " + product.Fats + " " + product.Carbohydrates + " ";
+                string line = product.Name + " " + product.Proteins + " " + product.Fats + " " + product.Carbohydrates + " ";        //доделать
 
                 foreach (var vitamin in product.Vitamins)
                 {
@@ -36,7 +36,7 @@ namespace CaloriesCalculation.Admin
             return filePath;
         }
 
-        static List <Product> GetListWithProductData ()
+        static List<Product> GetListWithProductData()
         {
             List<Product> listWithProductData = new();
 
@@ -64,75 +64,76 @@ namespace CaloriesCalculation.Admin
             return listWithProductData;
         }
 
-                    static string GetNameOfProduct()
-                    {
-                        Console.Write("Укажите название продукта: ");
-                        string nameOfProduct = Console.ReadLine();
+        //добавить грамовку
+        static string GetNameOfProduct()
+        {
+            Console.Write("Укажите название продукта: ");
+            string nameOfProduct = Console.ReadLine();
 
-                        return nameOfProduct;
-                    }
+            return nameOfProduct;
+        }
 
-                    static double GetAmountOfProteins()
-                    {
-                        Console.Write("Укажите количество белков в продукте: ");
-                        double amountOfProteins;
-                        while (!double.TryParse(Console.ReadLine(), out amountOfProteins))
-                            Console.WriteLine("Неверный формат значения! Введите заного");
+        static double GetAmountOfProteins()
+        {
+            Console.Write("Укажите количество белков в продукте : ");
+            double amountOfProteins;
+            while (!double.TryParse(Console.ReadLine(), out amountOfProteins))
+                Console.WriteLine("Неверный формат значения! Введите заного");
 
-                        return amountOfProteins;
-                    }
+            return amountOfProteins;
+        }
 
-                    static double GetAmountOfFats()
-                    {
-                        Console.Write("Укажите количество жиров в продукте: ");
-                        double amountOfFats;
-                        while (!double.TryParse(Console.ReadLine(), out amountOfFats))
-                            Console.WriteLine("Неверный формат значения! Введите заного");
+        static double GetAmountOfFats()
+        {
+            Console.Write("Укажите количество жиров в продукте: ");
+            double amountOfFats;
+            while (!double.TryParse(Console.ReadLine(), out amountOfFats))
+                Console.WriteLine("Неверный формат значения! Введите заного");
 
-                        return amountOfFats;
-                    }
+            return amountOfFats;
+        }
 
-                    static double GetAmountOfCarbohydrates()
-                    {
-                        Console.Write("Укажите количество углеводов в продукте: ");
-                        double amountOfCarbohydrates;
-                        while (!double.TryParse(Console.ReadLine(), out amountOfCarbohydrates))
-                            Console.WriteLine("Неверный формат значения! Введите заного");
+        static double GetAmountOfCarbohydrates()
+        {
+            Console.Write("Укажите количество углеводов в продукте: ");
+            double amountOfCarbohydrates;
+            while (!double.TryParse(Console.ReadLine(), out amountOfCarbohydrates))
+                Console.WriteLine("Неверный формат значения! Введите заного");
 
-                        return amountOfCarbohydrates;
-                    }
+            return amountOfCarbohydrates;
+        }
 
-                    static Dictionary<string, double> GetDataOfVitamins ()
-                    {
-                        Dictionary<string, double> dataOfVitamins = new();
+        static Dictionary<string, double> GetDataOfVitamins()
+        {
+            Dictionary<string, double> dataOfVitamins = new();
 
-                        while (GetVitaminChoice())
-                        {
+            while (GetVitaminChoice())
+            {
 
-                            Console.Write("Введите название витамина: ");
-                            string nameOfVitamin = Console.ReadLine();
+                Console.Write("Введите название витамина: ");
+                string nameOfVitamin = Console.ReadLine();
 
-                            Console.Write("Введите количество витамина: ");
-                            double amountOfVitamin = double.Parse(Console.ReadLine());
+                Console.Write("Введите количество витамина: ");
+                double amountOfVitamin = double.Parse(Console.ReadLine());
 
-                            dataOfVitamins[nameOfVitamin] = amountOfVitamin;
+                dataOfVitamins[nameOfVitamin] = amountOfVitamin;
 
-                        }
-                        return dataOfVitamins;
-                    }
+            }
+            return dataOfVitamins;
+        }
 
-                                static bool GetProductChoice()
-                                {
-                                    Console.Write("Хотите добавить данные о новом продукте? (Да/Нет): ");
-                                    string choice = Console.ReadLine();
-                                    return choice.ToLower() == "да";
-                                }
+        static bool GetProductChoice()
+        {
+            Console.Write("Хотите добавить данные о новом продукте? (Да/Нет): ");
+            string choice = Console.ReadLine();
+            return choice.ToLower() == "да";
+        }
 
-                                static bool GetVitaminChoice()
-                                {
-                                    Console.Write("Хотите добавить данные о новом витамине? (Да/Нет): ");
-                                    string choice = Console.ReadLine();
-                                    return choice.ToLower() == "да";
-                                }
+        static bool GetVitaminChoice()
+        {
+            Console.Write("Хотите добавить данные о новом витамине? (Да/Нет): ");
+            string choice = Console.ReadLine();
+            return choice.ToLower() == "да";
+        }
     }
 }
