@@ -1,5 +1,6 @@
 ﻿using ColoriesCalculation.Entities.Core;
 using ColoriesСalculation.Client.Entites;
+using System.Linq;
 
 namespace ColoriesCalculation.Client
 {
@@ -63,8 +64,8 @@ namespace ColoriesCalculation.Client
             foreach (string line in linesFromFile)
             {
                 string[] values = line.Split(' ');
-
                 string nameOfProduct = values[0];
+
                 double amountOfProteins = Convert.ToDouble(values[1]);
                 double amountOfFats = Convert.ToDouble(values[2]);
                 double amountOfCarbohydrates = Convert.ToDouble(values[3]);
@@ -90,13 +91,37 @@ namespace ColoriesCalculation.Client
             return productList;
         }
 
+        static List<Product> SearchProductByName(string partialName)
+        {
+            var productList = GetProductList();
+            var foundProducts = productList.Where(p => p.Name.Contains(partialName)).ToList();
+            return foundProducts;
+        }
         static List<Product> GetSelectedProduct()
         {
             List<Product> selectedProducts = new();
 
             while (true)
             {
-                var productList = GetProductList();
+                Console.Write("Введите частичное имя продукта, чтобы добавить его в блюдо (или '0' для завершения: ");
+                string partialName = Console.ReadLine();
+                if (partialName == "0")
+                    break;
+
+                var foundProducts = SearchProductByName(partialName);
+                if (foundProducts.Count == 0)
+                {
+                    Console.WriteLine("Нет продуктов, соответсвтующих введенному частичному имени.");
+                    continue;
+                }
+
+                Console.WriteLine("Найденные продукты: ");
+                for (int i = 0; i < foundProducts.Count; i++)
+                {
+                    Product product = foundProducts[i];
+                    Console.WriteLine($"{i + 1}. {product.Name}");
+                }
+
                 Console.Write("Введите номер продукта, чтобы добавить его в блюдо (или '0' для завершения): ");
                 string inputIndex = Console.ReadLine();
                 if (inputIndex == "0")
@@ -104,10 +129,10 @@ namespace ColoriesCalculation.Client
                     break;
                 }
 
-                if (int.TryParse(inputIndex, out int selectedProductIndex) && selectedProductIndex >= 1 && selectedProductIndex <= productList.Count)
+                if (int.TryParse(inputIndex, out int selectedProductIndex) && selectedProductIndex >= 1 && selectedProductIndex <= foundProducts.Count)
                 {
-                    Product selectedProduct = productList[selectedProductIndex - 1];
-                    Console.Write($"Введите вес для продукта '{selectedProduct.Name}': ");
+                    Product selectedProduct = foundProducts[selectedProductIndex - 1];
+                    Console.Write($"Введите вес для продукта '{selectedProduct.Name}' в граммах: ");
                     string inputWeight = Console.ReadLine();
                     if (double.TryParse(inputWeight, out double weight))
                     {
@@ -130,19 +155,10 @@ namespace ColoriesCalculation.Client
 
         static void CreateDish()
         {
-            while (GetChoice())
+            while (true)
             {
                 Console.WriteLine("Введите название блюда: ");
                 string dishName = Console.ReadLine();
-
-                var productList = GetProductList();
-
-                Console.WriteLine("Доступные продукты");
-                for (int i = 0; i < productList.Count; i++)
-                {
-                    Product product = productList[i];
-                    Console.WriteLine($"{i + 1}. {product.Name}");
-                }
 
                 var selectedProducts = GetSelectedProduct();
 
@@ -152,15 +168,12 @@ namespace ColoriesCalculation.Client
                     newDish.AddProduct(product);
                 }
                 dishes.Add(newDish);
+
+                Console.Write("Хотите добавить еще блюдо в список? (Да/Нет) (Yes/No) (Y/N): ");
+                string ch = Console.ReadLine().ToLower();
+                if (ch != "да" || ch != "yes" || ch != "y")
+                    break;
             }
-
-        }
-
-        static bool GetChoice()
-        {
-            Console.Write("Хотите добавить новое блюдо? (Да/Нет): ");
-            string choice = Console.ReadLine();
-            return choice.ToLower() == "да";
         }
 
         static void PrintDishList()

@@ -15,11 +15,12 @@ namespace CaloriesCalculation.Admin
 
             foreach (var product in listWithProductData)
             {
-                string line = product.Name + " " + product.Proteins + " " + product.Fats + " " + product.Carbohydrates + " ";        //доделать
+
+                string line = $"{product.Name} {product.Proteins} {product.Fats} {product.Carbohydrates} ";
 
                 foreach (var vitamin in product.Vitamins)
                 {
-                    line += vitamin.Key + " " + vitamin.Value + " ";
+                    line += $"{vitamin.Key} {vitamin.Value} ";
                 }
 
                 listForLines.Add(line);
@@ -64,7 +65,6 @@ namespace CaloriesCalculation.Admin
             return listWithProductData;
         }
 
-        //добавить грамовку
         static string GetNameOfProduct()
         {
             Console.Write("Укажите название продукта: ");
@@ -75,7 +75,7 @@ namespace CaloriesCalculation.Admin
 
         static double GetAmountOfProteins()
         {
-            Console.Write("Укажите количество белков в продукте : ");
+            Console.Write("Укажите количество белков на 100гр в продукте : ");
             double amountOfProteins;
             while (!double.TryParse(Console.ReadLine(), out amountOfProteins))
                 Console.WriteLine("Неверный формат значения! Введите заного");
@@ -85,7 +85,7 @@ namespace CaloriesCalculation.Admin
 
         static double GetAmountOfFats()
         {
-            Console.Write("Укажите количество жиров в продукте: ");
+            Console.Write("Укажите количество жиров на 100гр в продукте: ");
             double amountOfFats;
             while (!double.TryParse(Console.ReadLine(), out amountOfFats))
                 Console.WriteLine("Неверный формат значения! Введите заного");
@@ -95,7 +95,7 @@ namespace CaloriesCalculation.Admin
 
         static double GetAmountOfCarbohydrates()
         {
-            Console.Write("Укажите количество углеводов в продукте: ");
+            Console.Write("Укажите количество углеводов на 100гр в продукте: ");
             double amountOfCarbohydrates;
             while (!double.TryParse(Console.ReadLine(), out amountOfCarbohydrates))
                 Console.WriteLine("Неверный формат значения! Введите заного");
