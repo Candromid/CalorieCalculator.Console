@@ -94,7 +94,7 @@ namespace ColoriesCalculation.Client
         static List<Product> SearchProductByName(string partialName)
         {
             var productList = GetProductList();
-            var foundProducts = productList.Where(p => p.Name.Contains(partialName)).ToList();
+            var foundProducts = productList.Where(p => p.Name.ToLower().Contains(partialName)).ToList();
             return foundProducts;
         }
         static List<Product> GetSelectedProduct()
